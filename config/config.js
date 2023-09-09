@@ -1,7 +1,11 @@
 module.exports = {
   NODE_ENV: process.env.NODE_ENV,
   PORT: process.env.PORT,
-
+  app: {
+    port: process.env.DEV_APP_PORT || 3000,
+    appName: process.env.APP_NAME || 'iLrn',
+    env: process.env.NODE_ENV || 'development',
+  },
   /** DATABASE */
   db: {
     DB_HOST: "localhost",
@@ -29,5 +33,8 @@ module.exports = {
     api_key: process.env.SEND_GRID_API_KEY,
     api_user: process.env.USERNAME,
     from_email: process.env.FROM_EMAIL || 'ntnhan90@gmail.com',
+  },
+  winiston: {
+    logpath: '/iLrnLogs/logs/',
   },
 };
