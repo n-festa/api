@@ -23,4 +23,11 @@ module.exports = {
   auth: {
     secret: "our-secret-key"
   }
+
+  /* Email */
+    sendgrid: {
+    api_key: process.env.SEND_GRID_API_KEY,
+    api_user: process.env.USERNAME,
+    from_email: process.env.FROM_EMAIL || 'ntnhan90@gmail.com',
+  },
 };
