@@ -9,7 +9,7 @@ class RequestHandler {
 		return result => (fn(result) ? this.throwError(status, errorType, errorMessage)() : result);
 	}
 
-	validateJoi(err, status errorType, errorMessage){
+	validateJoi(err, status ,errorType, errorMessage){
 		if(err) { this.logger.log(`error in validating request : ${errorMessage}`, 'warn'); }
 		return !_.isNull(err) ? this.throwError(status, errorType, errorMessage) : '';
 	}

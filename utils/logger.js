@@ -2,7 +2,7 @@
 const { createLogger, format, transports } = require("winston");
 const fs = require('fs');
 const DailyRotate = require('winston-daily-rotate-file');
-const config = require('./config/config');
+const config = require('../config/config.js');
 
 const { env } = config.app;
 const logDir = 'log';
@@ -25,7 +25,7 @@ class Logger {
 				format.timestamp({
 					format: 'YYYY-MM-DD HH:mm:ss',
 				}),
-				format.prinff(info => `${info.timestamp} ${info.level} : ${info.message}`),
+				format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`),
 				//
 				//
 

@@ -1,6 +1,4 @@
 
-
-
 module.exports = (sequelize, DataTypes) => {
 	const Admins = sequelize.define('admins', {
 		id: {
@@ -37,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		refesh_token:{
 			type: DataTypes.STRING(60),
-		}
+		},
 		createdAt:
 		{
 			type: DataTypes.DATE, field: 'created_at',
@@ -45,7 +43,6 @@ module.exports = (sequelize, DataTypes) => {
 		updatedAt: {
 			type: DataTypes.DATE, field: 'updated_at',
 		},
-
 	}, {});
 
 
