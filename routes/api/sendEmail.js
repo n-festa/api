@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const async = require('async');
 const email = require('../../utils/email');
-const config = require('../../config/appconfig');
+const config = require('../../config/config');
 const stringUtil = require('../../utils/stringUtil');
 /**
  * @swagger

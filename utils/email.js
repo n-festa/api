@@ -4,7 +4,7 @@ const config = require('../config/config');
 const sg = require('sendgrid')(config.sendgrid.api_key);
 const Logger = require('./logger.js');
 
-const Logger = new Logger();
+const Logger1 = new Logger();
 
 module.exports = {
 
