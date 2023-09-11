@@ -22,7 +22,11 @@ class BaseController {
     */
 	static async getById(req, modelName) {
 		const reqParam = req.params.id;
+		(modelName);
+
 		let result;
+		
+		/*
 		try {
 			result = await req.app.get('db')[modelName].findByPk(reqParam).then(
 				errHandler.throwIf(r => !r, 404, 'not found', 'Resource not found'),
@@ -30,8 +34,8 @@ class BaseController {
 			);
 		} catch (err) {
 			return Promise.reject(err);
-		}
-		return result;
+		}*/
+		return modelName;
 	}
 
 	static async getByCustomOptions(req, modelName, options) {

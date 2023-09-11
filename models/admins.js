@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-	const Admins = sequelize.define('admins', {
+	const admins = sequelize.define('admins', {
 		id: {
 			type: DataTypes.BIGINT(11),
 			allowNull: false,
@@ -46,5 +46,5 @@ module.exports = (sequelize, DataTypes) => {
 	}, {});
 
 
-	return Admins;
+	return admins;
 };
