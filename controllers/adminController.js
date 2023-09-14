@@ -35,7 +35,7 @@ class AdminController extends BaseController{
 		}
 	}
 
-	static async login(req, res){}
+	
 }
 
 module.exports = AdminController;

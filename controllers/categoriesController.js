@@ -23,9 +23,13 @@ class CategoriesController extends BaseController{
 	static async getCateById(req, res){
 		//res.status(200).send("Public .");
 		try {
-			const reqParam = req.params.id;
-
-			const result = await super.getById(req, 'categories');
+			let options = {
+				where : {
+					id: 1
+				}
+			}
+			const result = await super.getByCustomOptions(req, 'categories', options);
+		//	const result = await super.getById(req, 'categories');
 			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
 		} catch (error) {
 			return requestHandler.sendError(req, res, error);

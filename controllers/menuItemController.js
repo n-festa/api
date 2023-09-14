@@ -11,7 +11,7 @@ const requestHandler = new RequestHandler(logger);
 class MenuItemController extends BaseController{
 	static async getListMenuItem(req, res){
 		try {
-			const result = await super.getList(req, 'orders');
+			const result = await super.getList(req, 'menu_item');
 			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
 		} catch (error) {
 			return requestHandler.sendError(req, res, error);
@@ -19,11 +19,10 @@ class MenuItemController extends BaseController{
 	}
 
 	static async getById(req, res){
-		//res.status(200).send("Public .");
 		try {
 			const reqParam = req.params.id;
 
-			const result = await super.getById(req, 'orders');
+			const result = await super.getById(req, 'menu_item');
 			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
 		} catch (error) {
 			return requestHandler.sendError(req, res, error);
