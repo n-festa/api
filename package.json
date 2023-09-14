@@ -37,6 +37,7 @@
     "sendgrid": "^5.2.3",
     "sequelize": "^6.32.1",
     "swagger-jsdoc": "^6.2.8",
+    "swagger-model-validator": "^3.0.21",
     "swagger-ui-express": "^5.0.0",
     "winston": "^3.10.0",
     "winston-daily-rotate-file": "^4.7.1"

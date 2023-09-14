@@ -8,9 +8,9 @@ const swaggerUi = require('swagger-ui-express');
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-const config = require('../config/appconfig');
+const config = require('../config/config');
 
-const directoryPath = path.join(__dirname, '../router/api');
+const directoryPath = path.join(__dirname, '../routes/api');
 const pathes = [];
 
 const filesName = fs.readdirSync(directoryPath, (err, files) => {

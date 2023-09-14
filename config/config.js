@@ -2,7 +2,7 @@ module.exports = {
   NODE_ENV: process.env.NODE_ENV,
   PORT: process.env.PORT,
   app: {
-    port: process.env.DEV_APP_PORT || 3000,
+    port: process.env.DEV_APP_PORT || 9090,
     appName: process.env.APP_NAME || 'iLrn',
     env: process.env.NODE_ENV || 'development',
   },

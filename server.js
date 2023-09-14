@@ -4,6 +4,7 @@ const cors = require("cors");
 const config = require("./config/config.js");
 
 const app = express();
+const swagger = require('./utils/swagger');
 
 const corsOptions = {
   origin: "http://localhost:9090"
@@ -29,10 +30,10 @@ app.get("/", (req, res) => {
   res.json({ message: "Hi there, welcome to this tutoria12312l." });
 });
 
-// api routes
-require("./routes/auth.routes")(app);
-require("./routes/user.routes")(app);
-app.use(require('./routes'));
+//app.set('db', require('../models/index.js'));
+
+app.set('port', process.env.DEV_APP_PORT);
+app.use('/api/docs', swagger.router);
 
 // set port, listen for requests
 const PORT = config.PORT;

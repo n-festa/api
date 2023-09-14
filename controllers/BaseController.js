@@ -10,35 +10,23 @@ class BaseController {
 		this.limit = 20;
 		this.options = options;
 	}
-	
+
 	static async getById(req, modelName) {
 		const reqParam = req.params.id;
 		let result;
 		
 		try {
-			result = await db[modelName].findOne({where: {id :reqParam} })
-			/*
-			result = await db[modelName].findOne({where: {id :reqParam} }).then(
-				errHandler.throwIf(r => !r, 404, 'not found', 'Resource not found'),
-				errHandler.throwError(500, 'sequelize error ,some thing wrong with either the data base connection or schema'),
-			);
-*/
-			/*
-			result = await req.app.get('db')[modelName].findByPk(reqParam).then(
-				errHandler.throwIf(r => !r, 404, 'not found', 'Resource not found'),
-				errHandler.throwError(500, 'sequelize error ,some thing wrong with either the data base connection or schema'),
-			);
-			*/
+			result = await db[modelName].findByPk(reqParam)
+			
 		} catch (err) {
 			return Promise.reject(err);
 		}
-		
-	}
+		return result
+ 	}
 
 	static async getByCustomOptions(req, modelName, options) {
 		let result;
 		try {
-			//result = await req.app.get('db')[modelName].findOne(options);
 			result = await db[modelName].findOne(options)
 		} catch (err) {
 			return Promise.reject(err);
@@ -50,7 +38,7 @@ class BaseController {
 		const reqParam = req.params.id;
 		let result;
 		try {
-			result = await req.app.get('db')[modelName].destroy({
+			result = await db[modelName].destroy({
 				where: {
 					id: reqParam,
 				},
@@ -71,7 +59,7 @@ class BaseController {
 		}
 		let result;
 		try {
-			result = await req.app.get('db')[modelName].build(obj).save().then(
+			result = await  db[modelName].build(obj).save().then(
 				errHandler.throwIf(r => !r, 500, 'Internal server error', 'something went wrong couldnt save data'),
 				errHandler.throwError(500, 'sequelize error'),
 
@@ -90,7 +78,7 @@ class BaseController {
 		let result;
 
 		try {
-			result = await req.app.get('db')[modelName]
+			result = await  db[modelName]
 				.update(data, {
 					where: {
 						id: recordID,
@@ -112,7 +100,7 @@ class BaseController {
 		let result;
 
 		try {
-			result = await req.app.get('db')[modelName]
+			result = await  db[modelName]
 				.update(data, {
 					where: options,
 				}).then(
@@ -149,7 +137,7 @@ class BaseController {
 			} else {
 				options = _.extend({}, options, {}); // extend it so we can't mutate
 			}
-
+			
 			results = await db[modelName]
 				.findAll(options)
 				.then(

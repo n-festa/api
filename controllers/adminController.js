@@ -28,7 +28,8 @@ class AdminController extends BaseController{
 					id: 1
 				}
 			}
-			const result = await super.getByCustomOptions(req, 'admin', options);
+			const result = await super.getById(req, 'admin');
+			//const result = await super.getByCustomOptions(req, 'admin', options);
 			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
 		} catch (error) {
 			return requestHandler.sendError(req, res, error);
