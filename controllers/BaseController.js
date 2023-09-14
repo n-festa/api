@@ -10,15 +10,19 @@ class BaseController {
 		this.limit = 20;
 		this.options = options;
 	}
+	
 	static async getById(req, modelName) {
 		const reqParam = req.params.id;
 		let result;
 		
 		try {
+			result = await db[modelName].findOne({where: {id :reqParam} })
+			/*
 			result = await db[modelName].findOne({where: {id :reqParam} }).then(
 				errHandler.throwIf(r => !r, 404, 'not found', 'Resource not found'),
 				errHandler.throwError(500, 'sequelize error ,some thing wrong with either the data base connection or schema'),
 			);
+*/
 			/*
 			result = await req.app.get('db')[modelName].findByPk(reqParam).then(
 				errHandler.throwIf(r => !r, 404, 'not found', 'Resource not found'),
@@ -34,7 +38,8 @@ class BaseController {
 	static async getByCustomOptions(req, modelName, options) {
 		let result;
 		try {
-			result = await req.app.get('db')[modelName].findOne(options);
+			//result = await req.app.get('db')[modelName].findOne(options);
+			result = await db[modelName].findOne(options)
 		} catch (err) {
 			return Promise.reject(err);
 		}

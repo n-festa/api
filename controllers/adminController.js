@@ -23,14 +23,19 @@ class AdminController extends BaseController{
 	static async getAdminById(req, res){
 		//res.status(200).send("Public .");
 		try {
-			const reqParam = req.params.id;
-
-			const result = await super.getById(req, 'admin');
+			let options = {
+				where : {
+					id: 1
+				}
+			}
+			const result = await super.getByCustomOptions(req, 'admin', options);
 			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
 		} catch (error) {
 			return requestHandler.sendError(req, res, error);
 		}
 	}
+
+	static async login(req, res){}
 }
 
 module.exports = AdminController;

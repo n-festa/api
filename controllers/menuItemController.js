@@ -9,7 +9,7 @@ const logger = new Logger();
 const requestHandler = new RequestHandler(logger);
 
 class MenuItemController extends BaseController{
-	static async getList(req, res){
+	static async getListMenuItem(req, res){
 		try {
 			const result = await super.getList(req, 'orders');
 			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });

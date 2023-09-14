@@ -10,8 +10,8 @@ const requestHandler = new RequestHandler(logger);
 const db = require("../models");
 const Categories = db.categories;
 
-class AdminController extends BaseController{
-	static async getListAdmins(req, res){
+class CategoriesController extends BaseController{
+	static async getListCate(req, res){
 		try {
 			const result = await super.getList(req, 'categories');
 			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
@@ -20,7 +20,7 @@ class AdminController extends BaseController{
 		}
 	}
 
-	static async getAdminById(req, res){
+	static async getCateById(req, res){
 		//res.status(200).send("Public .");
 		try {
 			const reqParam = req.params.id;
@@ -33,4 +33,4 @@ class AdminController extends BaseController{
 	}
 }
 
-module.exports = AdminController;
+module.exports = CategoriesController;
