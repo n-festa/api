@@ -30,10 +30,11 @@ app.get("/", (req, res) => {
   res.json({ message: "Hi there, welcome to this tutoria12312l." });
 });
 
+// api routes
 //app.set('db', require('../models/index.js'));
 
-app.set('port', process.env.DEV_APP_PORT);
 app.use('/api/docs', swagger.router);
+app.use(require('./routes'));
 
 // set port, listen for requests
 const PORT = config.PORT;
