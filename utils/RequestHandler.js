@@ -25,11 +25,11 @@ class RequestHandler {
 
 	catchError(res, error){
 		if(!error) error = new Error("Default Error");
-		res.status(error.status || 500).json({type: 'error', message: error.message || "Unhandled error", error});
+		res.status(error.status || 500).json({type: 'error1', message: error.message || "Unhandled error", error});
 	}
 
 	sendSuccess(res, message, status) {
-		this.logger.log(`a request has been made and proccessed successfully at: ${new Date()}`, 'info');
+		//this.logger.log(`a request has been made and proccessed successfully at: ${new Date()}`, 'info');
 		return (data, globalData) => {
 			if (_.isUndefined(status)) {
 				status = 200;
@@ -41,9 +41,9 @@ class RequestHandler {
 	}
 
 	sendError(req, res, error) {
-		this.logger.log(`error ,Error during processing request: ${`${req.protocol}://${req.get('host')}${req.originalUrl}`} details message: ${error.message}`, 'error');
+		//this.logger.log(`error ,Error during processing request: ${`${req.protocol}://${req.get('host')}${req.originalUrl}`} details message: ${error.message}`, 'error');
 		return res.status(error.status || 500).json({
-			type: 'error', message: error.message || error.message || 'Unhandled Error', error,
+			type: 'error2', message: error.message || error.message || 'Unhandled Error', error,
 		});
 	}
 }

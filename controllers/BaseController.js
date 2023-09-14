@@ -1,41 +1,34 @@
-
-
 const _ = require('lodash');
 const RequestHandler = require('../utils/RequestHandler');
 const Logger = require('../utils/logger');
-
-
 const logger = new Logger();
 const errHandler = new RequestHandler(logger);
+const db = require("../models");
+
 class BaseController {
 	constructor(options) {
 		this.limit = 20;
 		this.options = options;
 	}
-
-    /**
-    * Get an element by it's id .
-    *
-    *
-    * @return a Promise
-	* @return an err if an error occur
-    */
 	static async getById(req, modelName) {
 		const reqParam = req.params.id;
-		(modelName);
-
 		let result;
 		
-		/*
 		try {
+			result = await db[modelName].findOne({where: {id :reqParam} }).then(
+				errHandler.throwIf(r => !r, 404, 'not found', 'Resource not found'),
+				errHandler.throwError(500, 'sequelize error ,some thing wrong with either the data base connection or schema'),
+			);
+			/*
 			result = await req.app.get('db')[modelName].findByPk(reqParam).then(
 				errHandler.throwIf(r => !r, 404, 'not found', 'Resource not found'),
 				errHandler.throwError(500, 'sequelize error ,some thing wrong with either the data base connection or schema'),
 			);
+			*/
 		} catch (err) {
 			return Promise.reject(err);
-		}*/
-		return modelName;
+		}
+		
 	}
 
 	static async getByCustomOptions(req, modelName, options) {
@@ -152,7 +145,7 @@ class BaseController {
 				options = _.extend({}, options, {}); // extend it so we can't mutate
 			}
 
-			results = await req.app.get('db')[modelName]
+			results = await db[modelName]
 				.findAll(options)
 				.then(
 					errHandler.throwIf(r => !r, 500, 'Internal server error', 'something went wrong while fetching data'),

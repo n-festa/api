@@ -7,21 +7,25 @@ const Logger = require('../utils/logger');
 
 const logger = new Logger();
 const requestHandler = new RequestHandler(logger);
+const db = require("../models");
+const Admin = db.admin;
 
 class AdminController extends BaseController{
 	static async getListAdmins(req, res){
-		res.status(200).send("Public Content.");
+		try {
+			const result = await super.getList(req, 'admin');
+			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
+		} catch (error) {
+			return requestHandler.sendError(req, res, error);
+		}
 	}
 
 	static async getAdminById(req, res){
-	//	res.status(200).send("Public .");
+		//res.status(200).send("Public .");
 		try {
 			const reqParam = req.params.id;
-			const schema = {
-				id: Joi.number().integer().min(1),
-			};
 
-			const result = await super.getById(req, 'admins');
+			const result = await super.getById(req, 'admin');
 			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
 		} catch (error) {
 			return requestHandler.sendError(req, res, error);

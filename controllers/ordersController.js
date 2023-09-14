@@ -7,8 +7,10 @@ const Logger = require('../utils/logger');
 
 const logger = new Logger();
 const requestHandler = new RequestHandler(logger);
+const db = require("../models");
+const orders = db.orders;
 
-class MenuItemController extends BaseController{
+class OrdersController extends BaseController{
 	static async getList(req, res){
 		try {
 			const result = await super.getList(req, 'orders');
@@ -29,7 +31,6 @@ class MenuItemController extends BaseController{
 			return requestHandler.sendError(req, res, error);
 		}
 	}
-
 }
 
-module.exports = MenuItemController;
+module.exports = OrdersController;

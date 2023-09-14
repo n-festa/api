@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-	const recipe = sequelize.define('recipe', {
+	const recipes = sequelize.define('recipes', {
 		id: {
 			type: DataTypes.BIGINT(11),
 			allowNull: false,
@@ -30,5 +30,5 @@ module.exports = (sequelize, DataTypes) => {
 	}, {});
 
 
-	return recipe;
+	return recipes;
 };

@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-	const admins = sequelize.define('admins', {
+	const admins = sequelize.define('admin', {
 		id: {
 			type: DataTypes.BIGINT(11),
 			allowNull: false,
@@ -45,6 +45,8 @@ module.exports = (sequelize, DataTypes) => {
 		},
 	}, {});
 
-
+	admins.associate = function (models) {
+		
+	};
 	return admins;
 };

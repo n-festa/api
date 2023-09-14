@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-	const sku = sequelize.define('sku', {
+	const skus = sequelize.define('skus', {
 		id: {
 			type: DataTypes.BIGINT(11),
 			allowNull: false,
@@ -32,5 +32,5 @@ module.exports = (sequelize, DataTypes) => {
 	}, {});
 
 
-	return sku;
+	return skus;
 };
