@@ -8,7 +8,7 @@ const Logger = require('../utils/logger');
 const BaseController = require('../controllers/BaseController');
 const stringUtil = require('../utils/stringUtil');
 const email = require('../utils/email');
-const config = require('../config/appconfig');
+const config = require('../config/config.js');
 const auth = require('../utils/auth');
 
 const logger = new Logger();
