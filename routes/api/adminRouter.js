@@ -4,7 +4,7 @@ const adminController = require('../../controllers/adminController');
 /**
    * @swagger
    * definitions:
-   *   users:
+   *   Admins:
    *     required:
    *       - id
    *       - username
@@ -24,7 +24,7 @@ const adminController = require('../../controllers/adminController');
  * /users/{userId}:
  *   get:
  *     tags:
- *       - users
+ *       - Admins
  *     description: Return a specific user
  *     security:
  *       - Bearer: []

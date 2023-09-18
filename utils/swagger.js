@@ -39,35 +39,22 @@ getFullPathes(filesName);
 const options = {
 	swaggerDefinition: {
 		info: {
-			title: 'i Lrn',
+			title: '2all',
 			version: '1.0.0',
-			description: 'i Lrn Microlearning System,REST API with Swagger doc',
-			contact: {
-				email: 'a.mezian@dreamtechs.co',
-			},
+			description: '2all api',
 		},
 		tags: [
 			{
-				name: 'users',
-				description: 'Users API',
+				name: 'Admins',
+				description: 'Admins API',
 			},
 			{
 				name: 'Auth',
 				description: 'Authentication apis',
 			},
 			{
-				name: 'Email',
+				name: 'categories',
 				description: 'for testing and sending emails ',
-			},
-			{
-				name: 'termsAndCondition',
-				description: ' the terms and condition for the application',
-
-			},
-			{
-				name: 'Versioning',
-				description: ' operation related to check the version of the apis or the mobile .. etc ',
-
 			},
 		],
 		schemes: ['http'],

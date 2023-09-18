@@ -1,21 +1,21 @@
 module.exports = (sequelize, DataTypes) => {
 	const orders = sequelize.define('orders', {
 		id: {
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
 		},
 		customer_id: {
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 		restaurant_id: {
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 		driver_id: {
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 		order_total: {
@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.FLOAT,
 		},
 		voucher_id: {
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 		},
 		time_delevery_request: {
 			type: DataTypes.INTEGER,

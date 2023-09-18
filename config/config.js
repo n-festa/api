@@ -8,11 +8,19 @@ module.exports = {
   },
   /** DATABASE */
   db: {
+    /*
     DB_HOST: "localhost",
     DB_USER: "root",
     DB_PASS: "root",
     DB_NAME: "2all-final",
     dialect: "mysql",
+    port: 8889,
+*/
+    DB_HOST: "db-2all-free.cjzo9reiq4bt.ap-southeast-2.rds.amazonaws.com",
+    DB_USER: "admin",
+    DB_PASS: "Nht123456789",
+    DB_NAME: "2all",
+    dialect: "3306",
     port: 8889,
     // pool is optional, it will be used for Sequelize connection pool configuration
     pool: {

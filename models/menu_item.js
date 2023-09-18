@@ -2,13 +2,13 @@
 module.exports = (sequelize, DataTypes) => {
 	const menu_item = sequelize.define('menu_item', {
 		id: {
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
 		},
 		restaurant_id:{
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 		name:{
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
 			defaultValue: 0
 		},
 		menu_item_type_id:{
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 		status:{

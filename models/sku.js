@@ -2,11 +2,11 @@
 module.exports = (sequelize, DataTypes) => {
 	const skus = sequelize.define('skus', {
 		id: {
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
-		},
+		}, //BIGINT
 		menu_item_id: {
 			type: DataTypes.STRING(191),
 		},

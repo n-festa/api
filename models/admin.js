@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
 	const admins = sequelize.define('admin', {
 		id: {
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,

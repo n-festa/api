@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
 	const ingredients = sequelize.define('ingredients', {
 		id: {
-			type: DataTypes.BIGINT(11),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
