@@ -9,17 +9,18 @@
   },
   "test": {
     "username": "admin",
-    "password": "Goodfood4goodlife",
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "port": "3306",
+    "password": "Nht123456789",
+    "database": "2all",
+    "host": "db-2all-free.cjzo9reiq4bt.ap-southeast-2.rds.amazonaws.com",
+    "port": 3306,
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "admin",
+    "password": "Nht123456789",
+    "database": "2all",
+    "host": "db-2all-free.cjzo9reiq4bt.ap-southeast-2.rds.amazonaws.com",
+    "port": 3306,
     "dialect": "mysql"
   }
 }
