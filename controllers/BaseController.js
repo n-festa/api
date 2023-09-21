@@ -88,6 +88,7 @@ class BaseController {
 					errHandler.throwError(500, 'sequelize error'),
 
 				).then(
+					
 					updatedRecored => Promise.resolve(updatedRecored),
 				);
 		} catch (err) {
