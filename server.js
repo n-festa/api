@@ -6,7 +6,17 @@ const config = require("./config/config.js");
 const app = express();
 const swagger = require('./utils/swagger');
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000/");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.options('http://localhost:3000/', cors())
+
 const corsOptions = {
+  optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // This is important.
   origin: "http://localhost:3000"
 };
 

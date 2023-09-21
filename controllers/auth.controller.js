@@ -7,14 +7,18 @@ const Role = db.role;
 const Op = db.Op;
 
 exports.signup = (req, res) => {
+
   // Save user to database
+
   User.create({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+    password: bcrypt.hashSync(req.body.password, 18)
   })
     .then(user => {
       if (req.body.roles) {
+        res.send({ message: "User was registered successfully!" });
+        /*
         Role.findAll({
           where: {
             name: {
@@ -26,11 +30,12 @@ exports.signup = (req, res) => {
             res.send({ message: "User was registered successfully!" });
           });
         });
+        */
       } else {
-        // User role 1
-        user.setRoles([1]).then(() => {
+        res.send({ message: "User was registered successfully!" });
+       /* user.setRoles([1]).then(() => {
           res.send({ message: "User was registered successfully!" });
-        });
+        });*/
       }
     })
     .catch(err => {
@@ -41,7 +46,7 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   User.findOne({
     where: {
-      username: req.body.username
+      email: req.body.email
     }
   })
     .then(user => {
@@ -81,6 +86,6 @@ exports.signin = (req, res) => {
       });
     })
     .catch(err => {
-      res.status(500).send({ message: err.message });
+      res.status(500).send({ message:" err.message "});
     });
 };
