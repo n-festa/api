@@ -94,56 +94,6 @@ class AuthController extends BaseController {
 		}
 	}
 
-	static async signUp(req, res) {
-		try {
-			const data = req.body;
-			const schema = {
-				email: Joi.string().email().required(),
-				name: Joi.string().required(),
-			};
-			const randomString = stringUtil.generateString();
-
-			const { error } = Joi.validate({ email: data.email, name: data.name }, schema);
-			requestHandler.validateJoi(error, 400, 'bad Request', error ? error.details[0].message : '');
-			const options = { where: { email: data.email } };
-			const user = await super.getByCustomOptions(req, 'Users', options);
-
-			if (user) {
-				requestHandler.throwError(400, 'bad request', 'invalid email account,email already existed')();
-			}
-
-			async.parallel([
-				function one(callback) {
-					email.sendEmail(
-						callback,
-						config.sendgrid.from_email,
-						[data.email],
-						' iLearn Microlearning ',
-						`please consider the following as your password${randomString}`,
-						`<p style="font-size: 32px;">Hello ${data.name}</p>  please consider the following as your password: ${randomString}`,
-					);
-				},
-			], (err, results) => {
-				if (err) {
-					requestHandler.throwError(500, 'internal Server Error', 'failed to send password email')();
-				} else {
-					logger.log(`an email has been sent at: ${new Date()} to : ${data.email} with the following results ${results}`, 'info');
-				}
-			});
-
-			const hashedPass = bcrypt.hashSync(randomString, config.auth.saltRounds);
-			data.password = hashedPass;
-			const createdUser = await super.create(req, 'Users');
-			if (!(_.isNull(createdUser))) {
-				requestHandler.sendSuccess(res, 'email with your password sent successfully', 201)();
-			} else {
-				requestHandler.throwError(422, 'Unprocessable Entity', 'unable to process the contained instructions')();
-			}
-		} catch (err) {
-			requestHandler.sendError(req, res, err);
-		}
-	}
-
 	static async refreshToken(req, res) {
 		try {
 			const data = req.body;

@@ -12,8 +12,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.options('http://localhost:3000/', cors())
-
+//app.options('http://localhost:3000/*', cors())
+app.options('*', cors())
 const corsOptions = {
   optionsSuccessStatus: 200, // For legacy browser support
   credentials: true, // This is important.

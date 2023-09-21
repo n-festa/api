@@ -36,7 +36,51 @@ class AdminController extends BaseController{
 		}
 	}
 
-	
+	static async create(req, res){
+		try{
+			const data = req.body;
+
+			const options = { where: { email: data.email } };
+			const user = await super.getByCustomOptions(req, 'admin', options);
+
+			if (user) {
+				requestHandler.throwError(400, 'bad request', 'invalid email ,email already existed')();
+			}
+
+			const createdUser = await super.create(req, 'admin');
+			
+			if (!(_.isNull(createdUser))) {
+				requestHandler.sendSuccess(res, 'email with your password sent successfully', 201)();
+			} else {
+				requestHandler.throwError(422, 'Unprocessable Entity', 'unable to process the contained instructions')();
+			}
+		}catch (err) {
+			requestHandler.sendError(req, res, err);
+		}
+	}
+
+	static async update(req,res){
+		try{
+			const data = req.body;
+
+			const options = { where: { email: data.email } };
+			const user = await super.getByCustomOptions(req, 'admin', options);
+
+			if (user) {
+				requestHandler.throwError(400, 'bad request', 'invalid email ,email already existed')();
+			}
+
+			const createdUser = await super.create(req, 'admin');
+			
+			if (!(_.isNull(createdUser))) {
+				requestHandler.sendSuccess(res, 'email with your password sent successfully', 201)();
+			} else {
+				requestHandler.throwError(422, 'Unprocessable Entity', 'unable to process the contained instructions')();
+			}
+		}catch (err) {
+			requestHandler.sendError(req, res, err);
+		}
+	}
 }
 
 module.exports = AdminController;
