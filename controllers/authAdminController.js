@@ -17,80 +17,24 @@ const tokenList = {};
 
 class AuthController extends BaseController {
 	static async login(req, res) {
-		try {
-			const schema = {
-				email: Joi.string().email().required(),
-				password: Joi.string().required(),
-				fcmToken: Joi.string(),
-				platform: Joi.string().valid('ios', 'android', 'web').required(),
-			};
-			const { error } = Joi.validate({
-				email: req.body.email,
-				password: req.body.password,
-				fcmToken: req.body.fcmToken,
-				platform: req.headers.platform,
-			}, schema);
-			requestHandler.validateJoi(error, 400, 'bad Request', error ? error.details[0].message : '');
-			const options = {
-				where: { email: req.body.email },
-			};
-			const user = await super.getByCustomOptions(req, 'Users', options);
+		try{
+			const data = req.body;
+			const options = { where: { email: data.email } };
+			const user = await super.getByCustomOptions(req, 'admin', options);
+
 			if (!user) {
-				requestHandler.throwError(400, 'bad request', 'invalid email address')();
+				requestHandler.throwError(400, 'bad request', 'khong tim thay admin co dung email nay')();
 			}
 
-			if (req.headers.fcmtoken && req.headers.platform) {
-				const find = {
-					where: {
-						user_id: user.id,
-						fcmToken: req.headers.fcmtoken,
-					},
-				};
-
-				const fcmToken = await super.getByCustomOptions(req, 'UserTokens', find);
-				const data = {
-					userId: user.id,
-					fcmToken: req.headers.fcmtoken,
-					platform: req.headers.platform,
-				};
-
-				if (fcmToken) {
-					req.params.id = fcmToken.id;
-					await super.updateById(req, 'UserTokens', data);
-				} else {
-					await super.create(req, 'UserTokens', data);
-				}
-			} else {
-				requestHandler.throwError(400, 'bad request', 'please provide all required headers')();
+			if(user.password  !== data.password ){
+				requestHandler.throwError(400, 'bad request', 'sai password')();
+			}else{
+				const result = await super.getByCustomOptions(req, 'admin', options);
+				return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
 			}
 
-			await bcrypt
-				.compare(req.body.password, user.password)
-				.then(
-					requestHandler.throwIf(r => !r, 400, 'incorrect', 'failed to login bad credentials'),
-					requestHandler.throwError(500, 'bcrypt error'),
-				);
-			const data = {
-				last_login_date: new Date(),
-			};
-			req.params.id = user.id;
-			await super.updateById(req, 'Users', data);
-			const payload = _.omit(user.dataValues, ['createdAt', 'updatedAt', 'last_login_date', 'password', 'gender', 'mobile_number', 'user_image']);
-			const token = jwt.sign({ payload }, config.auth.jwt_secret, { expiresIn: config.auth.jwt_expiresin, algorithm: 'HS512' });
-			const refreshToken = jwt.sign({
-				payload,
-			}, config.auth.refresh_token_secret, {
-				expiresIn: config.auth.refresh_token_expiresin,
-			});
-			const response = {
-				status: 'Logged in',
-				token,
-				refreshToken,
-			};
-			tokenList[refreshToken] = response;
-			requestHandler.sendSuccess(res, 'User logged in Successfully')({ token, refreshToken });
-		} catch (error) {
-			requestHandler.sendError(req, res, error);
+		}catch(err){
+			requestHandler.sendError(req, res, err);
 		}
 	}
 
