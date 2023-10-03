@@ -6,5 +6,7 @@ router.use('/admin', require('./adminRouter'));
 router.use('/menu_items', require('./menuItemRouter'));
 router.use('/categories', require('./categoriesRoutes'));
 router.use('/order', require('./orderRouter'));
+router.use('/ingredientsRouter', require('./ingredientsRouter'));
+router.use('/vouchers', require('./vouchersRouter'));
 
 module.exports = router;
