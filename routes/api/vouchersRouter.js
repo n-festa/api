@@ -1,15 +1,15 @@
 const router = require('express').Router();
-const voucherController = require('../../controllers/voucherController');
+const vouchersController = require('../../controllers/vouchersController');
 //const auth = require('../../utils/auth');
 
-router.get('/', voucherController.getList);
+router.get('/', vouchersController.getList);
 
-router.get('/:id([0-9])', voucherController.getById);
+router.get('/:id([0-9])', vouchersController.getById);
 
-router.post('/', voucherController.create);
+router.post('/', vouchersController.create);
 
-router.post('/:id([0-9])', voucherController.update);
+router.post('/:id([0-9])', vouchersController.update);
 
-router.delete('/:id([0-9])', voucherController.deleteById);
+router.delete('/:id([0-9])', vouchersController.deleteById);
 
 module.exports = router;

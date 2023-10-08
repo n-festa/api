@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-	const ingredients = sequelize.define('ingredients', {
+	const ingredients = sequelize.define('vouchers', {
 		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(255),
 		},
 		description:{
-			type: DataTypes.LONGTEXT,
+			type: DataTypes.TEXT(500),
 		},
 		type:{
 			type: DataTypes.STRING(75),
@@ -21,22 +21,22 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		discount_value:{
 			type: DataTypes.INTEGER,
-		}
+		},
 		discount_unit:{
 			type: DataTypes.STRING(45),
-		}
+		},
 		status:{
 			type: DataTypes.STRING(60),
-		}
+		},
 		create_date:{
 			type: DataTypes.DATE,
-		}
+		},
 		valid_from:{
 			type: DataTypes.DATE,
-		}
+		},
 		valid_util:{
 			type: DataTypes.DATE,
-		}
+		},
 		budget:{
 			type: DataTypes.INTEGER,
 		}

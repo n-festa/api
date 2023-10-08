@@ -79,5 +79,5 @@ class VouchersController extends BaseController{
 
 }
 
-module.exports = IngredientsController;
+module.exports = VouchersController;
 
