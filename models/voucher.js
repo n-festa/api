@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		description:{
 			type: DataTypes.LONGTEXT,
-		}
+		},
 		type:{
 			type: DataTypes.STRING(75),
 		},
