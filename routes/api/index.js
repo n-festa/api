@@ -9,5 +9,8 @@ router.use('/order', require('./orderRouter'));
 router.use('/ingredientsRouter', require('./ingredientsRouter'));
 router.use('/vouchers', require('./vouchersRouter'));
 router.use('/customer', require('./customerRouter'));
+router.use('/role', require('./roleRouter'));
+router.use('/setting', require('./settingRouter'));
+router.use('/store', require('./storeRouter'));
 
 module.exports = router;

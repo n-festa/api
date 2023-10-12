@@ -100,5 +100,21 @@ class AuthController extends BaseController {
 			requestHandler.sendError(req, res, err);
 		}
 	}
+
+	static async customer_login(req,res){
+		try{
+
+		}catch(err){
+			requestHandler.sendError(req,res, err);
+		}
+	}
+
+	static async customer_logout(req, res){
+		try{
+
+		}catch(err){
+			requestHandler.sendError(req,res, err);
+		}
+	}
 }
 module.exports = AuthController;
