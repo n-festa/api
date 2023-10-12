@@ -10,14 +10,19 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(191),
 			allowNull: false,
 		},
-		restaurant_id: {
+		description: {
 			type: DataTypes.TEXT(400),
 			allowNull: false,
 		},
-		
-		
-	}, {});
+		createdAt:
+		{
+			type: DataTypes.DATE, field: 'created_at',
+		},
+		updatedAt: {
+			type: DataTypes.DATE, field: 'updated_at',
+		},
 
+	}, {});
 
 	return roles;
 };

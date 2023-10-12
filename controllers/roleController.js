@@ -15,7 +15,7 @@ class RoleController extends BaseController{
 		} catch (error) {
 			return requestHandler.sendError(req, res, error);
 		}
-	}
+	} 
 
 	static async getById(req, res){
 		//res.status(200).send("Public .");
