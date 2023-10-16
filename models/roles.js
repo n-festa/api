@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		description: {
 			type: DataTypes.TEXT(400),
-			allowNull: false,
 		},
 		createdAt:
 		{

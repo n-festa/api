@@ -34,7 +34,7 @@ class RoleController extends BaseController{
 	}
 
 
-		static async create(req, res){
+	static async create(req, res){
 		try{
 			const data = req.body;
 			//requestHandler.sendSuccess(res, 'categories created successfully', 201)();
