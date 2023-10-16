@@ -42,7 +42,7 @@ class CustomerController extends BaseController{
 				requestHandler.throwError(400, 'bad request', 'invalid email ,email already existed')();
 			}
 
-			const createdUser = await super.create(req, 'admin');
+			const createdUser = await super.create(req, 'customers');
 			
 			if (!(_.isNull(createdUser))) {
 				requestHandler.sendSuccess(res, 'email with your password sent successfully', 201)();
