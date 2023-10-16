@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		dob: {
 			type: DataTypes.DATE,
-			allowNull: false,
+		//	allowNull: false,
 		},
 		health_info_id: {
 			type: DataTypes.INTEGER,
