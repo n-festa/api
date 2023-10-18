@@ -19,7 +19,7 @@ module.exports = {
    // DB_HOST: "db-2all-free.cjzo9reiq4bt.ap-southeast-2.rds.amazonaws.com",
     DB_HOST: "db-2all-free-backup.cmwyof2iqn6u.ap-southeast-2.rds.amazonaws.com",
     DB_USER: "admin",
-    DB_PASS: "Nht123456789",
+    DB_PASS: "Goodfood4goodlife",
     DB_NAME: "2all",
     dialect: "3306",
     port: 8889,
