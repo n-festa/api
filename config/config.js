@@ -15,8 +15,9 @@ module.exports = {
     DB_NAME: "2all-final",
     dialect: "mysql",
     port: 8889,
-*/
+*/ //Goodfood4goodlife
    // DB_HOST: "db-2all-free.cjzo9reiq4bt.ap-southeast-2.rds.amazonaws.com",
+    //http://db-2all-free-backup.cmwyof2iqn6u.ap-southeast-2.rds.amazonaws.com
     DB_HOST: "db-2all-free-backup.cmwyof2iqn6u.ap-southeast-2.rds.amazonaws.com",
     DB_USER: "admin",
     DB_PASS: "Goodfood4goodlife",

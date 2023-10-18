@@ -1,25 +1,25 @@
 {
   "development": {
     "username": "admin",
-    "password": "Nht123456789",
+    "password": "Goodfood4goodlife",
     "database": "2all",
-    "host": "db-2all-free.cjzo9reiq4bt.ap-southeast-2.rds.amazonaws.com",
+    "host": "db-2all-free-backup.cmwyof2iqn6u.ap-southeast-2.rds.amazonaws.com",
     "port": 3306,
     "dialect": "mysql"
   },
   "test": {
     "username": "admin",
-    "password": "Nht123456789",
+    "password": "Goodfood4goodlife",
     "database": "2all",
-    "host": "db-2all-free.cjzo9reiq4bt.ap-southeast-2.rds.amazonaws.com",
+    "host": "db-2all-free-backup.cmwyof2iqn6u.ap-southeast-2.rds.amazonaws.com",
     "port": 3306,
     "dialect": "mysql"
   },
   "production": {
     "username": "admin",
-    "password": "Nht123456789",
+    "password": "Goodfood4goodlife",
     "database": "2all",
-    "host": "db-2all-free.cjzo9reiq4bt.ap-southeast-2.rds.amazonaws.com",
+    "host": "db-2all-free-backup.cmwyof2iqn6u.ap-southeast-2.rds.amazonaws.com",
     "port": 3306,
     "dialect": "mysql"
   }
