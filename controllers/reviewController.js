@@ -7,7 +7,7 @@ const logger = new Logger();
 const requestHandler = new RequestHandler(logger);
 const db = require("../models");
 
-class StoreController extends BaseController{
+class ReviewController extends BaseController{
 	static async getList(req, res){
 		res.status(200).send("Public .");
 	}
@@ -15,7 +15,6 @@ class StoreController extends BaseController{
 	static async getById(req, res){
 		res.status(200).send("Public .");
 	}
-
 
 	static async create(req, res){
 		
@@ -30,5 +29,5 @@ class StoreController extends BaseController{
 	}
 }
 
-module.exports = StoreController;
+module.exports = ReviewController;
 

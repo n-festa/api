@@ -14,11 +14,8 @@ module.exports = (sequelize, DataTypes) => {
 		food_id:{
 			type: DataTypes.INTEGER,
 		}
-
-		
 	}, {});
 
 
 	return ingredients;
 };
-//ingredients.description

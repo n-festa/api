@@ -1,3 +1,4 @@
+/*
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const config = require('../config/config');
@@ -47,3 +48,19 @@ function verifyToken(req, res, next) {
 
 
 module.exports = { getJwtToken: getTokenFromHeader, isAuthunticated: verifyToken };
+*/
+const jwt = require('jsonwebtoken');
+const promisify = require('util').promisify;
+
+const sign = promisify(jwt.sign).bind(jwt);
+const verify = promisify(jwt.verify).bind(jwt);
+
+
+exports.generateToken = async (payload, secretSignature, tokenLife) => {
+};
+
+exports.verifyToken = async (token, secretKey) => {
+};
+
+exports.decodeToken = async (token, secretKey) => {
+};

@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const randToken = require('rand-token');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const async = require('async');
@@ -10,12 +11,14 @@ const stringUtil = require('../utils/stringUtil');
 const email = require('../utils/email');
 const config = require('../config/config.js');
 const auth = require('../utils/auth');
+const authMethod = require('../utils/auth');
+const jwtVariable = require('../utils/jwt');
 
 const logger = new Logger();
 const requestHandler = new RequestHandler(logger);
 const tokenList = {};
 
-class AuthController extends BaseController {
+class AuthAdminController extends BaseController {
 	static async login(req, res) {
 		try{
 			const data = req.body;
@@ -103,9 +106,57 @@ class AuthController extends BaseController {
 
 	static async customer_login(req,res){
 		try{
+			const data = req.body;
+			const options = { where: { email: data.email } };
+			const user = await super.getByCustomOptions(req, 'customers', options);
 
+			if (!user) {
+				requestHandler.throwError(400, 'bad request', 'khong tim thay customers co dung email nay')();
+			}
+
+			if(user.password  !== data.password ){
+				requestHandler.throwError(400, 'bad request', 'sai password')();
+			}
+
+			// token
+			/*
+			const accessTokenLife =
+				process.env.ACCESS_TOKEN_LIFE || jwtVariable.accessTokenLife;
+			const accessTokenSecret =
+				process.env.ACCESS_TOKEN_SECRET || jwtVariable.accessTokenSecret;
+
+			const dataForAccessToken = {
+				username: user.username,
+			};
+			const accessToken = await authMethod.generateToken(
+				dataForAccessToken,
+				accessTokenSecret,
+				accessTokenLife,
+			);
+			if (!accessToken) {
+				return res
+					.status(401)
+					.send('Đăng nhập không thành công, vui lòng thử lại.');
+			}
+			let refreshToken = randToken.generate(jwtVariable.refreshTokenSize); // tạo 1 refresh token ngẫu nhiên
+			if (!user.refreshToken) {
+				// Nếu user này chưa có refresh token thì lưu refresh token đó vào database
+				// await userModel.updateRefreshToken(user.username, refreshToken);
+			} else {
+				// Nếu user này đã có refresh token thì lấy refresh token đó từ database
+				refreshToken = user.refreshToken;
+			}
+			*/
+		
+			const result = await super.getByCustomOptions(req, 'customers', options);
+			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
+
+
+
+			
+			
 		}catch(err){
-			requestHandler.sendError(req,res, err);
+			requestHandler.sendError(req, res, err);
 		}
 	}
 
@@ -117,4 +168,4 @@ class AuthController extends BaseController {
 		}
 	}
 }
-module.exports = AuthController;
+module.exports = AuthAdminController;

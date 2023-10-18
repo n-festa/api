@@ -12,5 +12,5 @@ router.use('/customer', require('./customerRouter'));
 router.use('/role', require('./roleRouter'));
 router.use('/setting', require('./settingRouter'));
 router.use('/store', require('./storeRouter'));
-
+router.use('/auth', require('./authRouter'));
 module.exports = router;
