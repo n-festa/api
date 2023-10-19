@@ -13,10 +13,14 @@ const config = require('../config/config.js');
 const auth = require('../utils/auth');
 const authMethod = require('../utils/auth');
 const jwtVariable = require('../utils/jwt');
+const axios = require('axios');
+const FormData = require('form-data');
+
 
 const logger = new Logger();
 const requestHandler = new RequestHandler(logger);
 const tokenList = {};
+
 
 class AuthAdminController extends BaseController {
 	static async login(req, res) {
@@ -150,10 +154,6 @@ class AuthAdminController extends BaseController {
 		
 			const result = await super.getByCustomOptions(req, 'customers', options);
 			return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });
-
-
-
-			
 			
 		}catch(err){
 			requestHandler.sendError(req, res, err);
@@ -166,6 +166,39 @@ class AuthAdminController extends BaseController {
 		}catch(err){
 			requestHandler.sendError(req,res, err);
 		}
+	}
+
+	static async verivyPhone(req, res){
+		let data = new FormData();
+		data.append('u','2alltest');
+		data.append('pws','2alltest'); 
+		data.append('from','Vlocal'); 
+		data.append('phone','84905005248'); 
+		data.append('sms','224466'); 
+		data.append('bid','123'); 
+		data.append('pid',''); 
+		data.append('type','0'); 
+		data.append('json','1'); 
+
+		let config = {
+			method: 'post',
+			maxBodyLength : Infinity,
+			url : 'https::/cloudsms4,vietguys.biz:4438/api/index.php',
+			headers: {
+				...data.getHeaders()
+			},
+			data: data
+		};
+
+		axios.request(config)
+			.then((response) =>{
+				console.log(JSON.stringify(response.data));
+			})
+			.catch((error) =>{
+				console.log(error);
+			})
+// cloudsms4,vietguys.biz:4438/api/index.php
+		return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });	
 	}
 }
 module.exports = AuthAdminController;

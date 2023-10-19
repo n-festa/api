@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		food_id:{
 			type: DataTypes.INTEGER,
-		}
+		},
 		unit:{
 			type: DataTypes.STRING(191),
 		}
