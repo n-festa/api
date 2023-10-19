@@ -1,15 +1,16 @@
 const router = require('express').Router();
-const adminController = require('../../controllers/adminController');
+const reviewController = require('../../controllers/reviewController');
 //const auth = require('../../utils/auth');
 
-router.get('/', adminController.getListAdmins);
+router.get('/', reviewController.getListAdmins);
 
-router.get('/:id([0-9])', adminController.getAdminById);
+router.get('/:id([0-9])', reviewController.getAdminById);
 
-router.post('/', adminController.create);
+router.post('/', reviewController.create);
 
-router.post('/:id([0-9])', adminController.update);
+router.post('/:id([0-9])', reviewController.update);
 
-router.delete('/:id([0-9])', adminController.deleteById);
+router.delete('/:id([0-9])', reviewController.deleteById);
 
+router.post('/uploads', reviewController.uploads);
 module.exports = router;

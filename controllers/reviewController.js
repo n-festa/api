@@ -27,6 +27,10 @@ class ReviewController extends BaseController{
 	static async deleteById(req, res) {
 		
 	}
+
+	static async upload(req, res) {
+		
+	}
 }
 
 module.exports = ReviewController;

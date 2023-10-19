@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const config = require("./config/config.js");
-
+import {v2 as cloudinary} from 'cloudinary';
 const app = express();
 const swagger = require('./utils/swagger');
 
@@ -34,6 +34,15 @@ const Role = db.role;
 db.sequelize.sync().then(() => {
   //initial(); // Just use it in development, at the first time execution!. Delete it in production
 });
+
+
+cloudinary.config({ 
+  cloud_name: 'dtopkwb9k', 
+  api_key: '332271575983153', 
+  api_secret: 'YzrXm-J_LbOPqZJdxKQkrMSYACw'
+                 
+});
+
 
 // simple route
 app.get("/", (req, res) => {
