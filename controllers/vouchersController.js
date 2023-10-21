@@ -6,7 +6,6 @@ const Logger = require('../utils/logger');
 const logger = new Logger();
 const requestHandler = new RequestHandler(logger);
 const db = require("../models");
-const voucher = db.vouchers;
 
 class VouchersController extends BaseController{
 	static async getList(req, res){

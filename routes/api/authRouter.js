@@ -10,6 +10,11 @@ router.post('/admin/logout', auth.verifyToken, AuthAdminController.logOut);
 
 router.post('/login', AuthAdminController.customer_login);
 router.post('/register', CustomerController.create);
-router.get('/verifyPhone', AuthAdminController.verifyPhone);
+router.post('/verifyPhone', AuthAdminController.verifyPhone);
+
+router.post('/createOTP', AuthAdminController.createOTP);
+router.get('/set_session', AuthAdminController.set_session);
+router.get('/get_session', AuthAdminController.get_session);
+router.post('/checkOTP', AuthAdminController.checkOTP);
 
 module.exports = router;

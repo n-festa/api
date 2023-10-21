@@ -15,7 +15,7 @@ const authMethod = require('../utils/auth');
 const jwtVariable = require('../utils/jwt');
 const axios = require('axios');
 const FormData = require('form-data');
-
+const session = require('express-session')
 
 const logger = new Logger();
 const requestHandler = new RequestHandler(logger);
@@ -173,8 +173,8 @@ class AuthAdminController extends BaseController {
 		data.append('u','2alltest');
 		data.append('pws','2alltest'); 
 		data.append('from','Vlocal'); 
-		data.append('phone','84905005248'); 
-		data.append('sms','224466'); 
+	//	data.append('phone','84905005248'); 
+//		data.append('sms','224466'); // funtion random 6 so
 		data.append('bid','123'); 
 		data.append('pid',''); 
 		data.append('type','0'); 
@@ -183,7 +183,7 @@ class AuthAdminController extends BaseController {
 		let config = {
 			method: 'post',
 			maxBodyLength : Infinity,
-			url : 'https::/cloudsms4,vietguys.biz:4438/api/index.php',
+			url : 'https://cloudsms4.vietguys.biz:4438/api/index.php',
 			headers: {
 				...data.getHeaders()
 			},
@@ -199,6 +199,49 @@ class AuthAdminController extends BaseController {
 			})
 // cloudsms4,vietguys.biz:4438/api/index.php
 		return requestHandler.sendSuccess(res, 'User Data Extracted')({ result });	
+	}
+
+	static async createOTP(req, res){
+		//res.status(200).send("Public .");
+		const data = req.body;
+		const phone = req.body.phone;
+		const sms = req.body.sms;
+		req.session.User = {
+	        phone: phone,
+	        sms: sms,
+	    }
+	    return res.status(200).json({status: 'success'})
+		//return requestHandler.sendSuccess(res, 'User Data Extracted')({ data });
+	}
+
+	static async set_session(req,res){
+		req.session.User = {
+	        website: 'anonystick.com',
+	        type: 'blog javascript',
+	        like: '4550'
+	    }
+	    return res.status(200).json({status: 'success'})
+	}
+
+	static async get_session(req,res){
+		if(req.session.User){
+	        return res.status(200).json({status: 'success', session: req.session.User})
+	    }
+	    if(req.session.otp){
+	        return res.status(200).json({status: 'success', session: req.session.otp})
+	    }
+	    return res.status(200).json({status: 'error', session: 'No session'})
+
+	}
+
+	static async checkOTP(req,res){
+	    if(req.session.otp){
+	    	//const currentOTP = req.session.otp.sms
+	        return res.status(200).json({status: 'success'})
+	    }
+
+
+	    return res.status(200).json({status: 'error', session: 'No session'})
 	}
 }
 module.exports = AuthAdminController;

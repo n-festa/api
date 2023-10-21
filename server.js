@@ -1,9 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const config = require("./config/config.js");
+//const config = require("./config/config.js");
 const app = express();
 const swagger = require('./utils/swagger');
+const session = require('express-session');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000/");
@@ -33,6 +34,15 @@ const Role = db.role;
 db.sequelize.sync().then(() => {
 });
 
+//session
+app.use(session({
+    resave: true, 
+    saveUninitialized: true, 
+    secret: 'somesecret', 
+    cookie: { maxAge: 600000 }}
+    )
+);
+
 
 // simple route
 app.get("/", (req, res) => {
@@ -40,8 +50,6 @@ app.get("/", (req, res) => {
 });
 
 // api routes
-//app.set('db', require('../models/index.js'));
-
 app.use('/api/docs', swagger.router);
 app.use(require('./routes'));
 
