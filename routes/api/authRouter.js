@@ -10,6 +10,6 @@ router.post('/admin/logout', auth.verifyToken, AuthAdminController.logOut);
 
 router.post('/login', AuthAdminController.customer_login);
 router.post('/register', CustomerController.create);
-router.get('/verivyPhone', AuthAdminController.verivyPhone);
+router.get('/verifyPhone', AuthAdminController.verifyPhone);
 
 module.exports = router;

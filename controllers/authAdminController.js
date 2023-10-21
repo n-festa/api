@@ -168,7 +168,7 @@ class AuthAdminController extends BaseController {
 		}
 	}
 
-	static async verivyPhone(req, res){
+	static async verifyPhone(req, res){
 		let data = new FormData();
 		data.append('u','2alltest');
 		data.append('pws','2alltest'); 
