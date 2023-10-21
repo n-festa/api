@@ -235,10 +235,18 @@ class AuthAdminController extends BaseController {
 	}
 
 	static async checkOTP(req,res){
-	    if(req.session.otp){
-	    	//const currentOTP = req.session.otp.sms
-	        return res.status(200).json({status: 'success'})
+		if(req.session.User){
+			const currentOTP = req.session.User.sms;
+
+			const otp = req.body.otp;
+			if(otp  == currentOTP){
+				return res.status(200).json({status: 'success', message: "dung otp"});
+			}else{
+				return res.status(200).json({status: 'error', message: "sai otp"});
+			}
+	        
 	    }
+	  	
 
 
 	    return res.status(200).json({status: 'error', session: 'No session'})
