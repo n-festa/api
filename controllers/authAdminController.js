@@ -244,17 +244,6 @@ class AuthAdminController extends BaseController {
 		
 		return res.status(200).json({status: 'success', result: result})
 
-			/*
-		const data = req.body;
-		const phone = req.body.phone;
-		const sms = req.body.sms;
-
-		req.session.otp = {
-	        phone: phone,
-	        sms: sms,
-	    }
-	    return res.status(200).json({status: 'success',otp: req.session.otp.sms})
-	    */
 	}
 
 	static async set_session(req,res){
@@ -292,7 +281,58 @@ class AuthAdminController extends BaseController {
 
 
 	static async setEnergy(req,res){
-		return res.status(200).json({status: 'success'});
+		const axios = require('axios');
+
+		// const ngaySinh = req.body.ngaySinh;
+		// const chieuCao = req.body.chieuCao;
+		// const canNang = req.body.canNang;
+		// const gioiTinh = req.body.gioiTinh;
+		// const loaiLaoDong = req.body.loaiLaoDong;
+
+		let data = JSON.stringify({
+			"doiTuong": 1,
+			"ngaySinh": "1990-10-09T00:00:00+07:00",
+			"chieuCao": 175,
+			"canNang": 70,
+			"gioiTinh": 1,
+			"isKinhNguyet": false,
+			"isMangThai": false,
+			"isChoConBu": false,
+			"isTienManKinh": false,
+			"loaiLaoDong": 2,
+			"cheDoAn": 8,
+			"heSoPA": "1.0",
+			"heSoAF": 1,
+			"trangThaiTrongLuong": 1,
+			"nhuCauDieuChinhCanNang": 2
+		});
+
+		let config = {
+			method: 'post',
+			maxBodyLength: Infinity,
+			url: 'https://app.thucdongiadinh.vn/api/services/app/TraCuuNhuCauDinhDuong/TraCuuNhuCauDinhDuong',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data : data
+		};
+		console.log("config",config);
+
+
+
+		try{
+			const response = await axios.request(config);
+
+			const result = JSON.stringify(response.data);
+			return res.status(200).json({status: 'success', result: result})
+		} catch (error) {
+			console.log(error);
+			return res.status(500).json({status: 'fail', result: error})
+		};
+			
+
+		// return res.status(200).json({status: 'success', result: "response"})
+		//return data;
 	}
 }
 module.exports = AuthAdminController;
