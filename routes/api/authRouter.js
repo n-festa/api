@@ -16,5 +16,5 @@ router.post('/createOTP', AuthAdminController.createOTP);
 router.get('/set_session', AuthAdminController.set_session);
 router.get('/get_session', AuthAdminController.get_session);
 router.post('/checkOTP', AuthAdminController.checkOTP);
-
+router.post('/setEnergy', AuthAdminController.setEnergy);
 module.exports = router;

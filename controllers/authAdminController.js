@@ -203,15 +203,58 @@ class AuthAdminController extends BaseController {
 
 	static async createOTP(req, res){
 		//res.status(200).send("Public .");
-		const data = req.body;
+		const sms = stringUtil.generateNumber();
 		const phone = req.body.phone;
-		const sms = req.body.sms;
-		req.session.User = {
+		req.session.otp = {
 	        phone: phone,
 	        sms: sms,
 	    }
-	    return res.status(200).json({status: 'success'})
-		//return requestHandler.sendSuccess(res, 'User Data Extracted')({ data });
+
+	    
+		let data = new FormData();
+		data.append('u','2alltest');
+		data.append('pwd','3ef20dcd-62a2-404a-aa6d-69551fcb4fdf'); 
+		data.append('from','Vlocal'); 
+		data.append('phone',phone); 
+		data.append('sms',sms); // funtion random 6 so
+		data.append('bid','123'); 
+		data.append('pid',''); 
+		data.append('type','0'); 
+		data.append('json','1'); 
+
+		let config = {
+			method: 'post',
+			maxBodyLength : Infinity,
+			url : 'https://cloudsms4.vietguys.biz:4438/api/index.php',
+			headers: {
+				...data.getHeaders()
+			},
+			data: data
+		};
+		const result ="";
+
+		axios.request(config)
+			.then((response) =>{
+				console.log(JSON.stringify(response.data));
+				const result = response.data;
+			})
+			.catch((error) =>{
+				console.log(error);
+			})
+		
+		return res.status(200).json({status: 'success', result: result})
+
+			/*
+		const data = req.body;
+		const phone = req.body.phone;
+		const sms = req.body.sms;
+
+		req.session.otp = {
+	        phone: phone,
+	        sms: sms,
+	    }
+	    return res.status(200).json({status: 'success',otp: req.session.otp.sms})
+	    */
 	}
 
 	static async set_session(req,res){
@@ -224,32 +267,32 @@ class AuthAdminController extends BaseController {
 	}
 
 	static async get_session(req,res){
-		if(req.session.User){
-	        return res.status(200).json({status: 'success', session: req.session.User})
-	    }
+		console.log(stringUtil.generateString());
 	    if(req.session.otp){
 	        return res.status(200).json({status: 'success', session: req.session.otp})
 	    }
-	    return res.status(200).json({status: 'error', session: 'No session'})
+	    return res.status(200).json({status: 'error', session: 'No session', sms : stringUtil.generateNumber()})
 
 	}
 
 	static async checkOTP(req,res){
-		if(req.session.User){
-			const currentOTP = req.session.User.sms;
+		if(req.session.otp){
+			const currentOTP = req.session.otp.sms;
 
 			const otp = req.body.otp;
 			if(otp  == currentOTP){
-				return res.status(200).json({status: 'success', message: "dung otp"});
+				return res.status(200).json({status: 'success', message: "dung otp",otp: currentOTP});
 			}else{
-				return res.status(200).json({status: 'error', message: "sai otp"});
+				return res.status(200).json({status: 'error', message: "sai otp", otp: currentOTP});
 			}
-	        
 	    }
-	  	
-
 
 	    return res.status(200).json({status: 'error', session: 'No session'})
+	}
+
+
+	static async setEnergy(req,res){
+		return res.status(200).json({status: 'success'});
 	}
 }
 module.exports = AuthAdminController;
