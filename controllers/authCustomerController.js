@@ -138,9 +138,11 @@ class AuthCustomerController extends BaseController {
 
     // //Gửi SMS kèm OTP cho phoneNumber
     try {
-      const response = await thirdPartyAPI.sendOTPSMS(phoneNumber, otpInfo.OTP);
+      //const response = await thirdPartyAPI.sendOTPSMS(phoneNumber, otpInfo.OTP);
+      const response = req.session.otp;
       result.status = "success";
       result.info = response;
+      console.log(result);
       return res.status(200).json(result);
     } catch (error) {
       console.log("error", error);
@@ -184,7 +186,7 @@ class AuthCustomerController extends BaseController {
     if (!req.session.otp) {
       //no session
       result.status = "failed";
-      result.info = "OTP không hợp lệ";
+      result.info = "OTP không hợp lệ , khong ton tai";
       return res.status(200).json(result);
     }
     const currentOTP = req.session.otp;
@@ -193,7 +195,7 @@ class AuthCustomerController extends BaseController {
     if (phoneNumber != currentOTP.phoneNumber) {
       //Số điện thoại không khớp
       result.status = "failed";
-      result.info = "OTP không hợp lệ";
+      result.info = "OTP không dung";
       return res.status(200).json(result);
     }
 

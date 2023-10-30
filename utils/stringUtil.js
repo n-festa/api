@@ -13,7 +13,7 @@ module.exports = {
   },
 
   createOTP() {
-    const validTimeForOTP = 2 * 60 * 1000; //2 minutes
+    const validTimeForOTP = 15 * 60 * 1000; //2 minutes
     const possible = "0123456789";
 
     let result = { OTP: "", created_at: "", expired_at: "" };

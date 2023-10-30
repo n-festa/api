@@ -20,7 +20,7 @@ app.options("*", cors());
 const corsOptions = {
   optionsSuccessStatus: 200, // For legacy browser support
   credentials: true, // This is important.
-  origin: "http://localhost:3000",
+  origin: "http://localhost:3001",
 };
 
 app.use(cors(corsOptions));
@@ -39,7 +39,7 @@ db.sequelize.sync().then(() => {});
 //session
 app.use(
   session({
-    resave: true,
+    resave: false,
     saveUninitialized: true,
     secret: process.env.SESSION_SECRET,
     cookie: {},

@@ -17,7 +17,6 @@ router.post("/admin/logout", auth.verifyToken, AuthAdminController.logOut);
 // router.post('/verifyPhone', AuthAdminController.verifyPhone);
 router.post("/login", AuthCustomerController.login);
 router.post("/requestOTP", AuthCustomerController.requestOTP);
-// router.get("/set_session", AuthCustomerController.set_session);
 router.get("/get_session", AuthCustomerController.get_session);
 router.post("/authenticateOTP", AuthCustomerController.authenticateOTP);
 router.post("/setEnergy", AuthCustomerController.setEnergy);
