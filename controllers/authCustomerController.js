@@ -228,23 +228,28 @@ class AuthCustomerController extends BaseController {
   static async setEnergy(req, res) {
     const axios = require("axios");
 
-    // const ngaySinh = req.body.ngaySinh;
-    // const chieuCao = req.body.chieuCao;
-    // const canNang = req.body.canNang;
-    // const gioiTinh = req.body.gioiTinh;
-    // const loaiLaoDong = req.body.loaiLaoDong;
+     const ngaySinh = req.body.ngaySinh;
+     const chieuCao = req.body.chieuCao;
+     const canNang = req.body.canNang;
+     const gioiTinh = req.body.gioiTinh;
+     const loaiLaoDong = req.body.loaiLaoDong;
 
     let data = JSON.stringify({
       doiTuong: 1,
-      ngaySinh: "1990-10-09T00:00:00+07:00",
-      chieuCao: 175,
-      canNang: 70,
-      gioiTinh: 1,
+    //  ngaySinh: "1990-10-09T00:00:00+07:00",
+      //chieuCao: 175,
+      //canNang: 70,
+      //gioiTinh: 1,
+      ngaySinh : req.body.ngaySinh,
+      chieuCao : req.body.chieuCao,
+      canNang : req.body.canNang,
+      gioiTinh : req.body.gioiTinh,
       isKinhNguyet: false,
       isMangThai: false,
       isChoConBu: false,
       isTienManKinh: false,
-      loaiLaoDong: 2,
+     // loaiLaoDong: 2,
+      loaiLaoDong :req.body.loaiLaoDong,
       cheDoAn: 8,
       heSoPA: "1.0",
       heSoAF: 1,
@@ -266,7 +271,8 @@ class AuthCustomerController extends BaseController {
     try {
       const response = await axios.request(config);
 
-      const result = JSON.stringify(response.data);
+      //const result = JSON.stringify(response.data);
+      const result = response.data;
       return res.status(200).json({ status: "success", result: result });
     } catch (error) {
       console.log(error);
