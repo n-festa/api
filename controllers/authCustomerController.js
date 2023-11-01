@@ -1,19 +1,13 @@
 const Joi = require("joi");
-// const randToken = require("rand-token");
-// const bcrypt = require("bcrypt");
 const _ = require("lodash");
-// const async = require("async");
 const jwt = require("jsonwebtoken");
 const RequestHandler = require("../utils/RequestHandler");
 const Logger = require("../utils/logger");
 const BaseController = require("../controllers/BaseController");
 const stringUtil = require("../utils/stringUtil");
 const thirdPartyAPI = require("../utils/thirdPartyAPI");
-// const email = require("../utils/email");
 const config = require("../config/config.js");
 const auth = require("../utils/auth");
-// const authMethod = require("../utils/auth");
-// const jwtVariable = require("../utils/jwt");
 const axios = require("axios");
 const FormData = require("form-data");
 const session = require("express-session");
@@ -228,11 +222,11 @@ class AuthCustomerController extends BaseController {
   static async setEnergy(req, res) {
     const axios = require("axios");
 
-     const ngaySinh = req.body.ngaySinh;
-     const chieuCao = req.body.chieuCao;
-     const canNang = req.body.canNang;
-     const gioiTinh = req.body.gioiTinh;
-     const loaiLaoDong = req.body.loaiLaoDong;
+     const ngaySinh = req.body.data.ngaySinh;
+     const chieuCao = req.body.data.chieuCao;
+     const canNang = req.body.data.canNang;
+     const gioiTinh = req.body.data.gioiTinh;
+     const loaiLaoDong = req.body.data.loaiLaoDong;
 
     let data = JSON.stringify({
       doiTuong: 1,
@@ -240,16 +234,16 @@ class AuthCustomerController extends BaseController {
       //chieuCao: 175,
       //canNang: 70,
       //gioiTinh: 1,
-      ngaySinh : req.body.ngaySinh,
-      chieuCao : req.body.chieuCao,
-      canNang : req.body.canNang,
-      gioiTinh : req.body.gioiTinh,
+      ngaySinh : ngaySinh,
+      chieuCao : chieuCao,
+      canNang : canNang,
+      gioiTinh : gioiTinh,
       isKinhNguyet: false,
       isMangThai: false,
       isChoConBu: false,
       isTienManKinh: false,
      // loaiLaoDong: 2,
-      loaiLaoDong :req.body.loaiLaoDong,
+      loaiLaoDong :loaiLaoDong,
       cheDoAn: 8,
       heSoPA: "1.0",
       heSoAF: 1,
