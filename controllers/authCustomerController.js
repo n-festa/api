@@ -136,10 +136,10 @@ class AuthCustomerController extends BaseController {
       const response = req.session.otp;
       result.status = "success";
       result.info = response;
-      console.log(result);
+     // console.log(result);
       return res.status(200).json(result);
     } catch (error) {
-      console.log("error", error);
+     // console.log("error", error);
       result.status = "error";
       result.info = error.toString();
       return res.status(500).json(result);
@@ -176,11 +176,12 @@ class AuthCustomerController extends BaseController {
     const phoneNumber = req.body.phoneNumber;
     const inputOTP = req.body.inputOTP;
 
+    console.log( req.session.otp)
     // Lấy currentOTP mới nhất của phoneNumber mà được lưu ở session
     if (!req.session.otp) {
       //no session
       result.status = "failed";
-      result.info = "OTP không hợp lệ , khong ton tai";
+      result.info = "OTP không tồn tại";
       return res.status(200).json(result);
     }
     const currentOTP = req.session.otp;
@@ -189,7 +190,7 @@ class AuthCustomerController extends BaseController {
     if (phoneNumber != currentOTP.phoneNumber) {
       //Số điện thoại không khớp
       result.status = "failed";
-      result.info = "OTP không dung";
+      result.info = "OTP không đúng";
       return res.status(200).json(result);
     }
 
@@ -260,7 +261,7 @@ class AuthCustomerController extends BaseController {
       },
       data: data,
     };
-    console.log("config", config);
+ //   console.log("config", config);
 
     try {
       const response = await axios.request(config);
@@ -269,7 +270,7 @@ class AuthCustomerController extends BaseController {
       const result = response.data;
       return res.status(200).json({ status: "success", result: result });
     } catch (error) {
-      console.log(error);
+    //  console.log(error);
       return res.status(500).json({ status: "fail", result: error });
     }
 
