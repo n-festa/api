@@ -164,7 +164,7 @@ class AuthCustomerController extends BaseController {
     if (req.session.otp) {
       result.info = req.session.otp;
     }
-
+    console.log("otp1 " + req.session.otp)
     return res.status(200).json(result);
   }
 
@@ -176,7 +176,7 @@ class AuthCustomerController extends BaseController {
     const phoneNumber = req.body.phoneNumber;
     const inputOTP = req.body.inputOTP;
 
-    console.log( req.session.otp)
+    console.log("otp " + req.cookie);
     // Lấy currentOTP mới nhất của phoneNumber mà được lưu ở session
     if (!req.session.otp) {
       //no session
