@@ -5,21 +5,25 @@ const app = express();
 const swagger = require("./utils/swagger");
 const session = require("express-session");
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3001/");
+
+const allowCrossDomain = (req, res, next) => {
+  res.header(`Access-Control-Allow-Origin`, `http://localhost:3001`);
   res.header("Access-Control-Allow-Credentials", "true");
+  res.header(`Access-Control-Allow-Methods`, `GET,PUT,POST,DELETE`);
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
   );
   next();
-});
+};
 
-//app.options("*", cors());
+app.use(allowCrossDomain);
+
+
 const corsOptions = {
-  //optionsSuccessStatus: 200, // For legacy browser support
+  optionsSuccessStatus: 200, // For legacy browser support
   credentials: true, // This is important.
-  origin: "http://localhost:3001/",
+  origin: "http://localhost:3001",
 };
 
 app.use(cors(corsOptions));
