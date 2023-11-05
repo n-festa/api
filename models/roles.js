@@ -5,11 +5,13 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
-			unique: true,
 		},
 		name: {
-			type: DataTypes.STRING,
+			type: DataTypes.STRING(191),
 			allowNull: false,
+		},
+		description: {
+			type: DataTypes.TEXT(400),
 		},
 		createdAt:
 		{
@@ -18,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
 		updatedAt: {
 			type: DataTypes.DATE, field: 'updated_at',
 		},
+
 	}, {});
 
-	
 	return roles;
 };
