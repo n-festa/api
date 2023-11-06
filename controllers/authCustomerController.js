@@ -114,10 +114,24 @@ class AuthCustomerController extends BaseController {
 
   static async requestOTP(req, res) {
     const phoneNumber = req.body.phoneNumber;
+
     let result = {
       status: "",
       info: "",
     };
+
+    if (!phoneNumber) {
+      result.status = "error";
+      result.info = "phoneNumber is required";
+      return res.status(400).json(result);
+    }
+
+    //validate phone format
+    if (!stringUtil.validatePhone(phoneNumber)) {
+      result.status = "error";
+      result.info = "phoneNumber is invalid";
+      return res.status(400).json(result);
+    }
 
     //Tạo OTP cho phoneNumber
     const otpInfo = stringUtil.createOTP();
@@ -136,10 +150,10 @@ class AuthCustomerController extends BaseController {
       const response = req.session.otp;
       result.status = "success";
       result.info = response;
-     // console.log(result);
+      // console.log(result);
       return res.status(200).json(result);
     } catch (error) {
-     // console.log("error", error);
+      // console.log("error", error);
       result.status = "error";
       result.info = error.toString();
       return res.status(500).json(result);
@@ -164,7 +178,7 @@ class AuthCustomerController extends BaseController {
     if (req.session.otp) {
       result.info = req.session.otp;
     }
-    console.log("otp1 " + req.session.otp)
+    console.log("otp1 " + req.session.otp);
     return res.status(200).json(result);
   }
 
@@ -223,28 +237,28 @@ class AuthCustomerController extends BaseController {
   static async setEnergy(req, res) {
     const axios = require("axios");
 
-     const ngaySinh = req.body.data.ngaySinh;
-     const chieuCao = req.body.data.chieuCao;
-     const canNang = req.body.data.canNang;
-     const gioiTinh = req.body.data.gioiTinh;
-     const loaiLaoDong = req.body.data.loaiLaoDong;
+    const ngaySinh = req.body.data.ngaySinh;
+    const chieuCao = req.body.data.chieuCao;
+    const canNang = req.body.data.canNang;
+    const gioiTinh = req.body.data.gioiTinh;
+    const loaiLaoDong = req.body.data.loaiLaoDong;
 
     let data = JSON.stringify({
       doiTuong: 1,
-    //  ngaySinh: "1990-10-09T00:00:00+07:00",
+      //  ngaySinh: "1990-10-09T00:00:00+07:00",
       //chieuCao: 175,
       //canNang: 70,
       //gioiTinh: 1,
-      ngaySinh : ngaySinh,
-      chieuCao : chieuCao,
-      canNang : canNang,
-      gioiTinh : gioiTinh,
+      ngaySinh: ngaySinh,
+      chieuCao: chieuCao,
+      canNang: canNang,
+      gioiTinh: gioiTinh,
       isKinhNguyet: false,
       isMangThai: false,
       isChoConBu: false,
       isTienManKinh: false,
-     // loaiLaoDong: 2,
-      loaiLaoDong :loaiLaoDong,
+      // loaiLaoDong: 2,
+      loaiLaoDong: loaiLaoDong,
       cheDoAn: 8,
       heSoPA: "1.0",
       heSoAF: 1,
@@ -261,7 +275,7 @@ class AuthCustomerController extends BaseController {
       },
       data: data,
     };
- //   console.log("config", config);
+    //   console.log("config", config);
 
     try {
       const response = await axios.request(config);
@@ -270,7 +284,7 @@ class AuthCustomerController extends BaseController {
       const result = response.data;
       return res.status(200).json({ status: "success", result: result });
     } catch (error) {
-    //  console.log(error);
+      //  console.log(error);
       return res.status(500).json({ status: "fail", result: error });
     }
 

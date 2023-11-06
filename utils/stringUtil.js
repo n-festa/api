@@ -1,4 +1,5 @@
 const { valid } = require("joi");
+const { or } = require("sequelize");
 
 module.exports = {
   generateString() {
@@ -29,5 +30,14 @@ module.exports = {
     result.expired_at = currentTimestamp + validTimeForOTP; //miliseconds
 
     return result;
+  },
+  //validatePhone
+  validatePhone(phoneNumber) {
+    //get only number from phoneNumber
+    const validateHoneNumber = phoneNumber.replace(/\D/g, "");
+
+    const length = validateHoneNumber.length;
+    if (length < 11 || length > 12) return false;
+    return true;
   },
 };
