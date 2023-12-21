@@ -59,3 +59,5 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+//Test: fix commit 1,2 - scenario 1
